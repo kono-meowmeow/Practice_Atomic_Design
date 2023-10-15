@@ -1,7 +1,22 @@
+import styled from 'styled-components';
+
 export const PrimaryButton = (props) => {
   // どんな言葉でもPrimatyButtonを作れるようにするために、childrenを使う
   const { children } = props;
   return (
-    <button>{children}</button>
+    <SButton>{children}</SButton>
   );
 };
+
+const SButton = styled.button`
+  background-color: #40514e;
+  color: #fff;
+  padding: 6px 24px;
+  border: none;
+  border-radius: 9999px;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+`;

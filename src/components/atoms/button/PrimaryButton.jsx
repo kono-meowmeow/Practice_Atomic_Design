@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+// PrimaryButtonというコンポーネントを作る
+// PrimaryButtonを使うことで、どんな箇所でも同じボタンを使えるようにする
 export const PrimaryButton = (props) => {
   // どんな言葉でもPrimatyButtonを作れるようにするために、childrenを使う
   const { children } = props;

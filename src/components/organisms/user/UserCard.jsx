@@ -1,9 +1,11 @@
+import styled from "styled-components";
+
 export const UserCard = () => {
   return (
     <div>
-      <img alt="プロフィール" />
+      <img height={160} width={240} src="https://source.unsplash.com/gKXKBY-C-Dk" alt="プロフィール" />
       <p>名前</p>
-      <dl>
+      <SDL>
         <dt>メール</dt>
         <dd>1111@aaa.com</dd>
         <dt>TEL</dt>
@@ -12,7 +14,20 @@ export const UserCard = () => {
         <dd>ああああ会社</dd>
         <dt>WEB</dt>
         <dd>https://google.com</dd>
-      </dl>
+      </SDL>
     </div>
   );
 };
+
+const SDL = styled.dl`
+  text-align: left;
+  margin-bottom: 0px;
+  dt {
+    float: left; // float: left;を指定することで、dtタグを左側に寄せることができる
+  }
+  dd {
+    padding-left: 32px;
+    padding-bottom: 8px;
+    overflow-wrap: break-word; // 画面幅を超えたときに、単語単位で改行する
+  }
+`;

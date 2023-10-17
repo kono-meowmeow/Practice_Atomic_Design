@@ -4,6 +4,7 @@ import { SecondaryButton } from "./components/atoms/button/SecondaryButton";
 import { SearchInput } from "./components/molecules/SeachInput";
 import { UserCard } from "./components/organisms/user/UserCard";
 import { HeaderOnly } from "./components/templates/HeaderOnly";
+import { DefaultLayout } from "./components/templates/DefaultLayout";
 import "./styles.css";
 
 const user = {
@@ -20,13 +21,13 @@ const user = {
 export default function App() {
   return (
     <BrowserRouter>
-      <HeaderOnly>
+      <DefaultLayout>
         <PrimaryButton>テスト</PrimaryButton>
         <SecondaryButton>検索</SecondaryButton>
         <br />
         <SearchInput />
         <UserCard user={user} />
-      </HeaderOnly>
+      </DefaultLayout>
     </BrowserRouter>
   );
 }

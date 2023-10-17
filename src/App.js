@@ -6,6 +6,7 @@ import { UserCard } from "./components/organisms/user/UserCard";
 import { HeaderOnly } from "./components/templates/HeaderOnly";
 import { DefaultLayout } from "./components/templates/DefaultLayout";
 import "./styles.css";
+import { Router } from "./router/Router";
 
 const user = {
   name: "紫宮だよ",
@@ -20,14 +21,6 @@ const user = {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <DefaultLayout>
-        <PrimaryButton>テスト</PrimaryButton>
-        <SecondaryButton>検索</SecondaryButton>
-        <br />
-        <SearchInput />
-        <UserCard user={user} />
-      </DefaultLayout>
-    </BrowserRouter>
+    <Router />
   );
 }

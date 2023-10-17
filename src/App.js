@@ -6,28 +6,10 @@ import { UserCard } from "./components/organisms/user/UserCard";
 import { HeaderOnly } from "./components/templates/HeaderOnly";
 import { DefaultLayout } from "./components/templates/DefaultLayout";
 import "./styles.css";
-
-const user = {
-  name: "紫宮だよ",
-  image: "https://source.unsplash.com/gKXKBY-C-Dk",
-  email: "333@example.com",
-  phone: "090-1111-2222",
-  company: {
-    name: "テスト株式会社"
-  },
-  website: "https://google.com"
-};
+import { Router } from "./router/Router";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <DefaultLayout>
-        <PrimaryButton>テスト</PrimaryButton>
-        <SecondaryButton>検索</SecondaryButton>
-        <br />
-        <SearchInput />
-        <UserCard user={user} />
-      </DefaultLayout>
-    </BrowserRouter>
+    <Router />
   );
 }

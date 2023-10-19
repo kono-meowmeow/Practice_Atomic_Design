@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 export const UserIconWithName = (props) => {
-  const { image, name, height, width } = props;
+  const { image, name, height, width, isAdmin } = props;
 
   return (
     <SContainer>
       <SImage height={height} width={width} src={image} alt={name} />
       <SName>{name}</SName>
+      {/* isAdminがtrueであれば編集を表示する */}
+      {isAdmin && <SEdit>編集</SEdit>}
     </SContainer>
   );
 };
@@ -24,4 +26,10 @@ const SName = styled.p`
   font-weight: bold;
   margin: 0px;
   color: #40514e;
+`;
+
+const SEdit = styled.span`
+  text-decoration: underline;
+  color: #aaa;
+  cursor: pointer;
 `;

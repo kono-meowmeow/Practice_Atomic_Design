@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
+import { useRecoilState } from "recoil";
 
 import { SearchInput } from "../molecules/SeachInput";
 import { UserCard } from "../organisms/user/UserCard";
 import { SecondaryButton } from "../atoms/button/SecondaryButton";
 import { UserContext } from "../../providers/UserProvider";
+import { userState } from "../../store/userState";
 
 // ユーザー情報のダミーデータ
 // Array(10)で配列を作り、.keys()でインデックスを取得する
@@ -27,10 +29,14 @@ const users = [...Array(10).keys()].map(((val) => {
 
 export const Users = () => {
   // useContext()で、UserContextの値を取得する
-  const { userInfo, setUserInfo } = useContext(UserContext);
+  // const { userInfo, setUserInfo } = useContext(UserContext);
   // setUserInfoで、isAdminの値を切り替える
   // ただ、このままのコードだと、切り替えボタンを押した際に、関係のないUsersコンポーネントの子コンポーネントまで再レンダリングされてしまう
   // そこで、各子コンポーネントにmemo()を使って、再レンダリングを防ぐ
+
+  // 上記と同じことを、useRecoilState()を使って書き換える
+  const [userInfo, setUserInfo] = useRecoilState(userState);
+
   const onClickSwitch = () => { setUserInfo({ isAdmin: !userInfo.isAdmin }) }
   return (
     <SContainer>

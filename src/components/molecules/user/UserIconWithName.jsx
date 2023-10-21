@@ -1,7 +1,16 @@
 import styled from "styled-components";
+import { memo, useContext } from "react";
+import { UserContext } from "../../../providers/UserProvider";
 
-export const UserIconWithName = (props) => {
-  const { image, name, height, width, isAdmin } = props;
+export const UserIconWithName = memo((props) => {
+  const { image, name, height, width } = props;
+  // useContextを使って、UserContextを取得する
+  // UserContextを取得することで、グローバルに参照できる値を参照できる
+  // UserContextは、src/providers/UserProvider.jsxで定義している
+  const { userInfo } = useContext(UserContext);
+  console.log(userInfo);
+  // isAdminがtrueであれば、isAdminをtrueにする。userInfoがnullの場合は、falseにする
+  const isAdmin = userInfo ? userInfo.isAdmin : false;
 
   return (
     <SContainer>
@@ -11,7 +20,7 @@ export const UserIconWithName = (props) => {
       {isAdmin && <SEdit>編集</SEdit>}
     </SContainer>
   );
-};
+});
 
 const SContainer = styled.div`
   text-align: center; // 中央寄せ

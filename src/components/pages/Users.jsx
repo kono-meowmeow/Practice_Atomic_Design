@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 
 import { SearchInput } from "../molecules/SeachInput";
 import { UserCard } from "../organisms/user/UserCard";
+import { SecondaryButton } from "../atoms/button/SecondaryButton";
+import { UserContext } from "../../providers/UserProvider";
 
 // ユーザー情報のダミーデータ
 // Array(10)で配列を作り、.keys()でインデックスを取得する
@@ -23,18 +26,22 @@ const users = [...Array(10).keys()].map(((val) => {
 }));
 
 export const Users = () => {
-  const { state } = useLocation();
-  // stateがあれば、state.isAdminを代入する。なければfalseを代入する
-  const isAdmin = state ? state.isAdmin : false;
-
+  // useContext()で、UserContextの値を取得する
+  const { userInfo, setUserInfo } = useContext(UserContext);
+  // setUserInfoで、isAdminの値を切り替える
+  // ただ、このままのコードだと、切り替えボタンを押した際に、関係のないUsersコンポーネントの子コンポーネントまで再レンダリングされてしまう
+  // そこで、各子コンポーネントにmemo()を使って、再レンダリングを防ぐ
+  const onClickSwitch = () => { setUserInfo({ isAdmin: !userInfo.isAdmin }) }
   return (
     <SContainer>
       <h2>ユーザー一覧</h2>
       <SearchInput />
+      <br />
+      <SecondaryButton onClick={onClickSwitch}>切り替え</SecondaryButton>
       <SUserArea>
         {users.map((user) => {
           return (
-            <UserCard key={user.id} user={user} isAdmin={isAdmin} />
+            <UserCard key={user.id} user={user} />
           );
         })}
       </SUserArea>

@@ -7,9 +7,12 @@ import { HeaderOnly } from "./components/templates/HeaderOnly";
 import { DefaultLayout } from "./components/templates/DefaultLayout";
 import "./styles.css";
 import { Router } from "./router/Router";
+import { UserProvider } from "./providers/UserProvider";
 
 export default function App() {
   return (
-    <Router />
+    <UserProvider>
+      <Router />
+    </UserProvider>
   );
 }

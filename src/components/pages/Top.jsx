@@ -7,6 +7,7 @@ import { useSetRecoilState } from "recoil";
 import { SecondaryButton } from "../atoms/button/SecondaryButton";
 import { UserContext } from "../../providers/UserProvider";
 import { userState } from "../../store/userState";
+import axios from "axios";
 
 export const Top = () => {
   const navigate = useNavigate();
@@ -29,6 +30,30 @@ export const Top = () => {
     navigate("/users");
   };
 
+  const onClickUsers = () => {
+    // axios.get("URL")で、URLのデータを取得する
+    // then()で、通信に成功した場合の処理を書く
+    // then()の引数resには、レスポンスのデータが入ってくる
+    axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
+      console.log("通信に成功しました");
+      // resのdataプロパティに、取得したデータが入っている
+      console.log(res.data);
+      // エラーが起きた場合は、catch()の引数errにエラーの内容が入ってくる
+    }).catch((err) => {
+      console.log("通信に失敗しました");
+      console.log(err);
+    });
+  };
+  const onClickUser1 = () => {
+    axios.get("https://jsonplaceholder.typicode.com/users/1").then((res) => {
+      console.log("通信に成功しました");
+      console.log(res.data);
+    }).catch((err) => {
+      console.log("通信に失敗しました");
+      console.log(err);
+    });
+  };
+
   return (
     <SContainer>
       <h2>TOPページです</h2>
@@ -36,6 +61,12 @@ export const Top = () => {
       <br />
       <br />
       <SecondaryButton onClick={onClickGeneral}>一般ユーザー</SecondaryButton>
+      <hr />
+      <h2>データの取得</h2>
+      <SecondaryButton onClick={onClickUsers}>users</SecondaryButton>
+      <br />
+      <br />
+      <SecondaryButton onClick={onClickUser1}>id=1のuser</SecondaryButton>
     </SContainer>
   );
 };

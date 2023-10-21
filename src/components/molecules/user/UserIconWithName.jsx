@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { UserContext } from "../../../providers/UserProvider";
 
-export const UserIconWithName = (props) => {
+export const UserIconWithName = memo((props) => {
   const { image, name, height, width } = props;
   // useContextを使って、UserContextを取得する
   // UserContextを取得することで、グローバルに参照できる値を参照できる
@@ -20,7 +20,7 @@ export const UserIconWithName = (props) => {
       {isAdmin && <SEdit>編集</SEdit>}
     </SContainer>
   );
-};
+});
 
 const SContainer = styled.div`
   text-align: center; // 中央寄せ

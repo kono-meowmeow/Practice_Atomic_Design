@@ -8,8 +8,9 @@ export const UserProvider = (props) => {
   // Providerのコンポーネントは、何でも囲めるようにPropsとしてchildrenを受け取るようにする
   const { children } = props;
   // 実際には、固定値ではなく、useStateなどでstateを管理することが多い
-  // const contextName = "紫宮るな";
+  const contextName = "紫宮るな";
   // useStateを使って、userInfoを管理する。(初期値はnull)
+  // グローバルなstateが更新されると、グローバルなstateを参照しているコンポーネントが再レンダリングされることに注意
   const [userInfo, setUserInfo] = useState(null);
 
   return (

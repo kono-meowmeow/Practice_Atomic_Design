@@ -2,6 +2,7 @@ import { createContext } from "react";
 import { useState } from "react";
 
 // 初期化では値は必要ないから空のオブジェクトを渡す
+// 他の画面でcontextを使えるようにするため、exportする
 export const UserContext = createContext({});
 
 export const UserProvider = (props) => {
@@ -14,8 +15,10 @@ export const UserProvider = (props) => {
   const [userInfo, setUserInfo] = useState(null);
 
   return (
+    // ContextはProviderを使って囲むことで、グローバルに参照できる値を作成できる
     // グローバルに参照できる値をvalueとして渡す
-    // Providerで囲ったコンポーネントは、valueの値を参照できる
+    // Providerで囲った配下のコンポーネントは、valueの値を参照できる
+    // 今回は、userInfoとsetUserInfoを渡し、childrenにて参照できるようにする
     <UserContext.Provider value={{ userInfo, setUserInfo }}>
       {children}
     </UserContext.Provider>

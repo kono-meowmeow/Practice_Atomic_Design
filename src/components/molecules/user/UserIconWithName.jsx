@@ -7,6 +7,7 @@ import { userState } from "../../../store/userState";
 
 export const UserIconWithName = memo((props) => {
   const { image, name, height, width } = props;
+  // useContext()の引数で、どのContextを受け取るのかを指定する
   // useContextを使って、UserContextを取得する
   // UserContextを取得することで、グローバルに参照できる値を参照できる
   // UserContextは、src/providers/UserProvider.jsxで定義している

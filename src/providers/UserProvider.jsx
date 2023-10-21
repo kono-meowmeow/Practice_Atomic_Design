@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import { useState } from "react";
 
 // 初期化では値は必要ないから空のオブジェクトを渡す
 export const UserContext = createContext({});
@@ -6,12 +7,15 @@ export const UserContext = createContext({});
 export const UserProvider = (props) => {
   // Providerのコンポーネントは、何でも囲めるようにPropsとしてchildrenを受け取るようにする
   const { children } = props;
-  const contextName = "紫宮るな";
+  // 実際には、固定値ではなく、useStateなどでstateを管理することが多い
+  // const contextName = "紫宮るな";
+  // useStateを使って、userInfoを管理する。(初期値はnull)
+  const [userInfo, setUserInfo] = useState(null);
 
   return (
     // グローバルに参照できる値をvalueとして渡す
     // Providerで囲ったコンポーネントは、valueの値を参照できる
-    <UserContext.Provider value={{ contextName }}>
+    <UserContext.Provider value={{ userInfo, setUserInfo }}>
       {children}
     </UserContext.Provider>
   );

@@ -3,12 +3,14 @@ import { useContext } from "react";
 import { UserContext } from "../../../providers/UserProvider";
 
 export const UserIconWithName = (props) => {
-  const { image, name, height, width, isAdmin } = props;
+  const { image, name, height, width } = props;
   // useContextを使って、UserContextを取得する
   // UserContextを取得することで、グローバルに参照できる値を参照できる
   // UserContextは、src/providers/UserProvider.jsxで定義している
-  const context = useContext(UserContext);
-  console.log(context);
+  const { userInfo } = useContext(UserContext);
+  console.log(userInfo);
+  // isAdminがtrueであれば、isAdminをtrueにする。userInfoがnullの場合は、falseにする
+  const isAdmin = userInfo ? userInfo.isAdmin : false;
 
   return (
     <SContainer>

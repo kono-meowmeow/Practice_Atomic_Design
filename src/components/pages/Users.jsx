@@ -23,10 +23,6 @@ const users = [...Array(10).keys()].map(((val) => {
 }));
 
 export const Users = () => {
-  const { state } = useLocation();
-  // stateがあれば、state.isAdminを代入する。なければfalseを代入する
-  const isAdmin = state ? state.isAdmin : false;
-
   return (
     <SContainer>
       <h2>ユーザー一覧</h2>
@@ -34,7 +30,7 @@ export const Users = () => {
       <SUserArea>
         {users.map((user) => {
           return (
-            <UserCard key={user.id} user={user} isAdmin={isAdmin} />
+            <UserCard key={user.id} user={user} />
           );
         })}
       </SUserArea>
